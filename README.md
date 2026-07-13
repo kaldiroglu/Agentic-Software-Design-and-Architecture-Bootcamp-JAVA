@@ -25,7 +25,7 @@ behaviour, not bullet points. The trainer can live-demo each smell and its fix.
 | Package | Lecture | Examples |
 |---------|---------|----------|
 | `intro` | 01 Introduction | order total: tangled → policy-separated |
-| `fundamentals` | 02 Fundamentals | cohesion, coupling, Law of Demeter |
+| `fundamentals` | 02 Fundamentals | cohesion, coupling (Structured + OOP · DIP), Law of Demeter |
 | `cleancode` | 03 Clean Code | honest errors, guard clauses |
 | `solid` | 04 SOLID | SRP · OCP · LSP · ISP · DIP |
 | `patterns` | 05 Design Patterns | Factory · Strategy · Proxy |
@@ -40,6 +40,19 @@ behaviour, not bullet points. The trainer can live-demo each smell and its fix.
 Each concept keeps its smell class(es) (named `*Smell` or in a `violation`
 sub-package) beside the clean version, with a test asserting they behave the same
 where relevant — and, for LSP, asserting the smell **breaks** the contract.
+
+### OOP Coupling & DIP (Deck 02, `fundamentals.coupling.oop`)
+
+Beside Structured Design's coupling ladder (Content → Data), this shows the two
+**OOP** coupling types from deck 02:
+
+- **Message coupling** — `Orders` depends on the `Mailer` **interface**, injected
+  from outside: *program to an interface, not an implementation*; *depend on
+  abstractions, not concretions* — the **Dependency Inversion Principle**.
+  `OrdersSmell` is the anti-pattern (it `new`s a concrete mailer — no seam), and
+  `RecordingMailer` is the test double that seam buys you.
+- **Subtyping coupling** — `AuditLedgerSmell` reaches into its parent `Ledger`'s
+  protected `entries`; `AuditLedger` fixes it with composition (public API only).
 
 ## Architectural approach
 
