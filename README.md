@@ -47,6 +47,10 @@ where relevant — and, for LSP, asserting the smell **breaks** the contract.
 random creation (`random`), comparison (`matches`, constant-time), and formatting
 & masking (`masked`, `maskedShowingLast`) all live in one class, while storage,
 hashing and UI stay out. One concept, one home — functional cohesion in the small.
+Where does hashing go, then? A `PasswordHasher` **port** with a `Pbkdf2PasswordHasher`
+adapter and a durable `HashedPassword` value object — it changes for different reasons
+and needs infrastructure, so it stays off the domain type (DIP). See the slide-8
+presenter note "Why isn't hashing a Password here?".
 
 ### OOP Coupling & DIP (Deck 02, `fundamentals.coupling.oop`)
 

@@ -104,6 +104,15 @@ public final class Password {
         return value.hashCode();
     }
 
+    /**
+     * Package-private: a trusted same-module collaborator — a {@link PasswordHasher}
+     * — may read the raw value to hash or verify it. It never escapes this package,
+     * so the "value never leaks" guarantee holds for the outside world.
+     */
+    String reveal() {
+        return value;
+    }
+
     private static char pick(String pool) {
         return pool.charAt(RANDOM.nextInt(pool.length()));
     }
