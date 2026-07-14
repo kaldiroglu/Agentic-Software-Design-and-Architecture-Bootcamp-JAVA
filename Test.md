@@ -17,7 +17,7 @@ lecture 07 and will appear in the Phase-2 (architecture) example code.
 | Suite | Proves |
 |-------|--------|
 | `intro.OrderTotalTest` | smell and fixed compute the same total; the discount rule is swappable |
-| `fundamentals.cohesion.CohesionTest` | each focused class does one job; the God-utility still works but mixes concerns |
+| `fundamentals.cohesion.CohesionTest` | each focused class does one job; the God-utility still works but mixes concerns; a cohesive `Password` value object owns validation, random creation, comparison & masking |
 | `fundamentals.coupling.CouplingTest` | the loosely-coupled report accepts a fake DB; the tight one is stuck |
 | `fundamentals.coupling.oop.OopCouplingTest` | message coupling injects a fake `Mailer` (DIP); the impl-coupled smell has no seam; subtyping vs. composition agree |
 | `fundamentals.demeter.DemeterTest` | train-wreck and tell-don't-ask return the same city |
@@ -39,4 +39,4 @@ mvn test                       # run every suite
 mvn test -Dtest=LoanServiceTest    # run one suite
 ```
 
-A green run reports: `Tests run: 38, Failures: 0, Errors: 0, Skipped: 0`.
+A green run reports: `Tests run: 39, Failures: 0, Errors: 0, Skipped: 0`.

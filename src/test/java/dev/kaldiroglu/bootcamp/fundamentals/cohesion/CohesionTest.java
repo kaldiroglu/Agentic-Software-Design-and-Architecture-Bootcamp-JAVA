@@ -3,6 +3,9 @@ package dev.kaldiroglu.bootcamp.fundamentals.cohesion;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -30,5 +33,28 @@ class CohesionTest {
         assertEquals("Ada", utils.loadUser("u1"));
         assertEquals(20.0, utils.calcTax(100.0), 0.001);
         assertEquals("2026-07-11", utils.formatIsoDate(2026, 7, 11));
+    }
+
+    @Test
+    void passwordValueObjectKeepsAllItsBehaviourTogether() {
+        var password = Password.of("Sup3r-Secret!!");   // 14 chars: upper, lower, digit, symbol
+
+        // validation
+        assertFalse(Password.isValid("password"));       // too weak
+        assertThrows(IllegalArgumentException.class, () -> Password.of("short"));
+
+        // comparison
+        assertTrue(password.matches("Sup3r-Secret!!"));
+        assertFalse(password.matches("Sup3r-Secret!?"));
+
+        // formatting & masking — the raw value never leaks
+        assertEquals("••••••••••••••", password.masked());
+        assertEquals("••••••••••••!!", password.maskedShowingLast(2));
+        assertEquals(password.masked(), password.toString());
+
+        // random creation: valid by construction, and each one differs
+        var random = Password.random(16);
+        assertEquals(16, random.masked().length());
+        assertNotEquals(random, Password.random(16));
     }
 }

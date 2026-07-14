@@ -41,6 +41,13 @@ Each concept keeps its smell class(es) (named `*Smell` or in a `violation`
 sub-package) beside the clean version, with a test asserting they behave the same
 where relevant — and, for LSP, asserting the smell **breaks** the contract.
 
+### High Cohesion: a Password value object (Deck 02, `fundamentals.cohesion`)
+
+`Password` is a highly cohesive **value object** — validation (`of` / `isValid`),
+random creation (`random`), comparison (`matches`, constant-time), and formatting
+& masking (`masked`, `maskedShowingLast`) all live in one class, while storage,
+hashing and UI stay out. One concept, one home — functional cohesion in the small.
+
 ### OOP Coupling & DIP (Deck 02, `fundamentals.coupling.oop`)
 
 Beside Structured Design's coupling ladder (Content → Data), this shows the two
