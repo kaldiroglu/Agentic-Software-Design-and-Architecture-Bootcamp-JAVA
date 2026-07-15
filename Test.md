@@ -20,6 +20,7 @@ lecture 07 and will appear in the Phase-2 (architecture) example code.
 | `fundamentals.cohesion.CohesionTest` | each focused class does one job; the God-utility still works but mixes concerns |
 | `fundamentals.password.PasswordTest` | the cohesive `Password` value object owns validation, random creation, comparison & masking together |
 | `fundamentals.password.PasswordHasherTest` | hashing lives in a **port**, not on `Password`: PBKDF2 hash + verify, and per-password salt makes each hash unique yet verifiable |
+| `fundamentals.password.PasswordSplitTest` | presentation → `PasswordFormatter`, construction → `PasswordFactory`, each delegating to the `Password` value object (functional cohesion scales) |
 | `fundamentals.coupling.CouplingTest` | the loosely-coupled report accepts a fake DB; the tight one is stuck |
 | `fundamentals.coupling.oop.OopCouplingTest` | message coupling injects a fake `Mailer` (DIP); the impl-coupled smell has no seam; subtyping vs. composition agree |
 | `fundamentals.demeter.DemeterTest` | train-wreck and tell-don't-ask return the same city |
@@ -41,4 +42,4 @@ mvn test                       # run every suite
 mvn test -Dtest=LoanServiceTest    # run one suite
 ```
 
-A green run reports: `Tests run: 41, Failures: 0, Errors: 0, Skipped: 0`.
+A green run reports: `Tests run: 43, Failures: 0, Errors: 0, Skipped: 0`.
