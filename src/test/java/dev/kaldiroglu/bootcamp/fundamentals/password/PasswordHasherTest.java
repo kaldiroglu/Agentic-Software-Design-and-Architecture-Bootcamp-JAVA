@@ -1,4 +1,4 @@
-package dev.kaldiroglu.bootcamp.fundamentals.cohesion;
+package dev.kaldiroglu.bootcamp.fundamentals.password;
 
 import org.junit.jupiter.api.Test;
 

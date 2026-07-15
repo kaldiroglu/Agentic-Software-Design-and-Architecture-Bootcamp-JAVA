@@ -1,4 +1,4 @@
-package dev.kaldiroglu.bootcamp.fundamentals.cohesion;
+package dev.kaldiroglu.bootcamp.fundamentals.password;
 // ◀ Slides: Deck 02 Fundamentals — "A Password Value Object" (presenter note)
 
 /**

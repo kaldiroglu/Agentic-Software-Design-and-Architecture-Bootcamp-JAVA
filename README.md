@@ -41,7 +41,7 @@ Each concept keeps its smell class(es) (named `*Smell` or in a `violation`
 sub-package) beside the clean version, with a test asserting they behave the same
 where relevant — and, for LSP, asserting the smell **breaks** the contract.
 
-### High Cohesion: a Password value object (Deck 02, `fundamentals.cohesion`)
+### High Cohesion: a Password value object (Deck 02, `fundamentals.password`)
 
 `Password` is a highly cohesive **value object** — validation (`of` / `isValid`),
 random creation (`random`), comparison (`matches`, constant-time), and formatting
