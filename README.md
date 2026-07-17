@@ -65,6 +65,17 @@ Beside Structured Design's coupling ladder (Content → Data), this shows the tw
 - **Subtyping coupling** — `AuditLedgerSmell` reaches into its parent `Ledger`'s
   protected `entries`; `AuditLedger` fixes it with composition (public API only).
 
+### OCP: the type-field smell (Deck 04, `solid.ocp`)
+
+`EmployeePaySmell` is the classic Open/Closed violation — an `int type` field and a
+`pay()` method that branches on it (`if (type == ENGINEER) … SALESMAN … MANAGER`), so
+every new role edits tested code (and every other method that switches on type). The
+fix is *replace conditional with polymorphism*: an abstract `Employee` with `Engineer`,
+`Salesman` and `Manager` subclasses, each owning its own `pay()`. `SolidTest` proves the
+polymorphic version reproduces the smell's numbers role for role, then adds a brand-new
+`Contractor` **without editing any existing class** — open for extension, closed for
+modification.
+
 ## Architectural approach
 
 Examples are deliberately tiny and self-contained: one concept per package, few
