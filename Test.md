@@ -25,7 +25,7 @@ lecture 07 and will appear in the Phase-2 (architecture) example code.
 | `fundamentals.coupling.oop.OopCouplingTest` | message coupling injects a fake `Mailer` (DIP); the impl-coupled smell has no seam; subtyping vs. composition agree |
 | `fundamentals.demeter.DemeterTest` | train-wreck and tell-don't-ask return the same city |
 | `cleancode.CleanCodeTest` | honest errors throw vs. return null; guard clauses preserve behaviour |
-| `solid.SolidTest` | one nested test per principle — **LSP passes for Rectangle, fails for Square** |
+| `solid.SolidTest` | one nested test per principle (OCP adds the Employee type-field example: subclasses reproduce the `type`-switch numbers, and a new `Contractor` extends without edits) — **LSP passes for Rectangle, fails for Square** |
 | `patterns.PatternsTest` | Factory hides types; Strategy extends freely; Proxy defers the load |
 | `secure.SecureCodingTest` | concatenation is injectable; parameterization keeps input as data; errors don't leak; secrets come from config |
 | `testing.CalculatorTest` | Arrange-Act-Assert and an error-path test |
@@ -42,4 +42,4 @@ mvn test                       # run every suite
 mvn test -Dtest=LoanServiceTest    # run one suite
 ```
 
-A green run reports: `Tests run: 43, Failures: 0, Errors: 0, Skipped: 0`.
+A green run reports: `Tests run: 44, Failures: 0, Errors: 0, Skipped: 0`.
