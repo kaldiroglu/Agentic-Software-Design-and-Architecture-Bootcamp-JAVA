@@ -3,9 +3,14 @@ package dev.kaldiroglu.bootcamp.solid;
 import dev.kaldiroglu.bootcamp.solid.dip.InMemoryRepository;
 import dev.kaldiroglu.bootcamp.solid.dip.OrderService;
 import dev.kaldiroglu.bootcamp.solid.isp.Devices;
+import dev.kaldiroglu.bootcamp.solid.ocp.Employee;
+import dev.kaldiroglu.bootcamp.solid.ocp.EmployeePaySmell;
+import dev.kaldiroglu.bootcamp.solid.ocp.Engineer;
+import dev.kaldiroglu.bootcamp.solid.ocp.Manager;
 import dev.kaldiroglu.bootcamp.solid.ocp.Pricing;
 import dev.kaldiroglu.bootcamp.solid.ocp.PriceCalculatorSmell;
 import dev.kaldiroglu.bootcamp.solid.ocp.PricingRules;
+import dev.kaldiroglu.bootcamp.solid.ocp.Salesman;
 import dev.kaldiroglu.bootcamp.solid.srp.Invoice;
 import dev.kaldiroglu.bootcamp.solid.srp.InvoiceRenderer;
 import dev.kaldiroglu.bootcamp.solid.srp.InvoiceRepository;
@@ -41,6 +46,27 @@ class SolidTest {
             // A brand-new rule, added without touching any existing pricing code:
             Pricing electronics = base -> base * 1.18;
             assertEquals(59.0, electronics.price(50), 0.001);
+        }
+
+        @Test
+        @DisplayName("each role is a subclass, not a case in a switch on type")
+        void eachRoleIsASubclassNotACaseInASwitch() {
+            // the polymorphic version reproduces the smell's numbers, role for role
+            assertEquals(new EmployeePaySmell(EmployeePaySmell.ENGINEER, 100).pay(),
+                    new Engineer(100).pay(), 0.001);
+            assertEquals(new EmployeePaySmell(EmployeePaySmell.SALESMAN, 100).pay(),
+                    new Salesman(100).pay(), 0.001);
+            assertEquals(new EmployeePaySmell(EmployeePaySmell.MANAGER, 100).pay(),
+                    new Manager(100).pay(), 0.001);
+
+            // A brand-new role, added without editing any existing class:
+            Employee contractor = new Employee(100) {
+                @Override
+                public double pay() {
+                    return base * 0.90;   // day-rate, no benefits
+                }
+            };
+            assertEquals(90.0, contractor.pay(), 0.001);
         }
     }
 
