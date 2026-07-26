@@ -76,6 +76,16 @@ polymorphic version reproduces the smell's numbers role for role, then adds a br
 `Contractor` **without editing any existing class** — open for extension, closed for
 modification.
 
+### Rules in the model vs. rules in a service (Deck 07, `testing.credentials`)
+
+The same feature — changing a password — written twice. `UserAccountServiceSmell` is
+the **anemic** version: the rules sit in a service over a repository, so
+`ChangePasswordTest` must stand up a repository double to reach a rule that has
+nothing to do with storage. `UserAccount` is the **rich** version: the rule lives on
+the entity, so the same test needs only a fake hasher — the port that genuinely
+belongs behind an abstraction. Neither test uses a mocking library; both doubles are
+hand-written, which makes the difference in cost impossible to hide.
+
 ## Architectural approach
 
 Examples are deliberately tiny and self-contained: one concept per package, few

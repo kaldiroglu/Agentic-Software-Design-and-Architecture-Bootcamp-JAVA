@@ -30,6 +30,7 @@ lecture 07 and will appear in the Phase-2 (architecture) example code.
 | `secure.SecureCodingTest` | concatenation is injectable; parameterization keeps input as data; errors don't leak; secrets come from config |
 | `testing.CalculatorTest` | Arrange-Act-Assert and an error-path test |
 | `testing.doubles.WelcomeServiceTest` | a hand-written test double isolates the unit |
+| `testing.credentials.ChangePasswordTest` | the same change-password rule in both designs — the anemic version needs a repository double, the rich one needs none |
 | `project.LoanServiceTest` | borrow/return rules: 5-loan limit, copy availability, unknown book |
 | `layered.LayeredTest` | a request flows down the layers and back |
 | `hexagonal.HexagonalTest` | an adapter plugs into the domain's port from outside |
@@ -42,4 +43,4 @@ mvn test                       # run every suite
 mvn test -Dtest=LoanServiceTest    # run one suite
 ```
 
-A green run reports: `Tests run: 44, Failures: 0, Errors: 0, Skipped: 0`.
+A green run reports: `Tests run: 48, Failures: 0, Errors: 0, Skipped: 0`.
