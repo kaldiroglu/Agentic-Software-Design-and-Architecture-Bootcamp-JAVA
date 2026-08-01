@@ -1,5 +1,5 @@
 package dev.kaldiroglu.bootcamp.project;
-// ◀ Slides: Deck 09 SW Design Project with AI — "A Library Loan Service"
+// ◀ Slides: Deck 10 SW Design Project with AI — "A Library Loan Service"
 
 /**
  * The port the service depends on (DIP). The service never knows whether loans

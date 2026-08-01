@@ -43,4 +43,4 @@ mvn test                       # run every suite
 mvn test -Dtest=LoanServiceTest    # run one suite
 ```
 
-A green run reports: `Tests run: 48, Failures: 0, Errors: 0, Skipped: 0`.
+A green run reports: `Tests run: 62, Failures: 0, Errors: 0, Skipped: 0`.

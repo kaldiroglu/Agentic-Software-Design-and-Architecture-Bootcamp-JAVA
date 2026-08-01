@@ -1,5 +1,5 @@
 package dev.kaldiroglu.bootcamp.testing.credentials;
-// ◀ Slides: Deck 07 Developer Testing — "Move the Rules, Lose the Mocks"
+// ◀ Slides: Deck 08 Developer Testing — "Move the Rules, Lose the Mocks"
 
 import dev.kaldiroglu.bootcamp.fundamentals.password.HashedPassword;
 import dev.kaldiroglu.bootcamp.fundamentals.password.Password;

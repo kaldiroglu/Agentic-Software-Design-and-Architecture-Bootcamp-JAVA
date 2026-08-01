@@ -1,5 +1,5 @@
 package dev.kaldiroglu.bootcamp.layered.persistence;
-// ◀ Slides: Deck 11 Layered Architecture — "A Request, Layer by Layer"
+// ◀ Slides: Deck 12 Layered Architecture — "A Request, Layer by Layer"
 
 import java.util.ArrayList;
 import java.util.List;

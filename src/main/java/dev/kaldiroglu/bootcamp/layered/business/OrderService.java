@@ -1,12 +1,12 @@
 package dev.kaldiroglu.bootcamp.layered.business;
-// ◀ Slides: Deck 11 Layered Architecture — "A Request, Layer by Layer"
+// ◀ Slides: Deck 12 Layered Architecture — "A Request, Layer by Layer"
 
 import dev.kaldiroglu.bootcamp.layered.persistence.OrderRepository;
 
 /**
  * Business layer. Note the direction of the dependency: this domain logic imports
  * the persistence layer below it. That downward coupling is the classic layered
- * trade-off — the domain knows about infrastructure. (Topic 12 inverts it.)
+ * trade-off — the domain knows about infrastructure. (Topic 13 inverts it.)
  */
 public final class OrderService {
 

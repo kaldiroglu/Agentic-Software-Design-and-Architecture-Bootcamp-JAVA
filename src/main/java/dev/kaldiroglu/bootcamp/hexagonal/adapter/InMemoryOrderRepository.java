@@ -1,5 +1,5 @@
 package dev.kaldiroglu.bootcamp.hexagonal.adapter;
-// ◀ Slides: Deck 12 Hexagonal / Onion / Clean — "The Domain Owns the Interface"
+// ◀ Slides: Deck 13 Hexagonal / Onion / Clean — "The Domain Owns the Interface"
 
 import dev.kaldiroglu.bootcamp.hexagonal.domain.OrderRepository;
 

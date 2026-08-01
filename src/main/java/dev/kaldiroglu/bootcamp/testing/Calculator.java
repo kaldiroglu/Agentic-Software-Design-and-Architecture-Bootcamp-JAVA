@@ -1,5 +1,5 @@
 package dev.kaldiroglu.bootcamp.testing;
-// ◀ Slides: Deck 07 Developer Testing — "Arrange · Act · Assert"
+// ◀ Slides: Deck 08 Developer Testing — "Arrange · Act · Assert"
 
 /** A tiny unit under test — used to demonstrate the Arrange-Act-Assert shape. */
 public final class Calculator {

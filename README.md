@@ -30,10 +30,11 @@ behaviour, not bullet points. The trainer can live-demo each smell and its fix.
 | `solid` | 04 SOLID | SRP · OCP · LSP · ISP · DIP |
 | `patterns` | 05 Design Patterns | Factory · Strategy · Proxy |
 | `secure` | 06 Secure Coding | SQL injection, error leak, secrets |
-| `testing` | 07 Developer Testing | AAA, test doubles |
-| `project` | 09 Design Project | Library Loan service |
-| `layered` | 11 Layered | controller → service → repository |
-| `hexagonal` | 12 Hexagonal | ports & adapters (dependencies inverted) |
+| `stereotypes` | 07 Object Stereotypes | entity vs value object · factory · DTO · anemic vs rich model |
+| `testing` | 08 Developer Testing | AAA, test doubles |
+| `project` | 10 Design Project | Library Loan service |
+| `layered` | 12 Layered | controller → service → repository |
+| `hexagonal` | 13 Hexagonal | ports & adapters (dependencies inverted) |
 
 *(Topics 08 Agentic and 10 Architecture Fundamentals are conceptual — no code.)*
 
@@ -76,7 +77,7 @@ polymorphic version reproduces the smell's numbers role for role, then adds a br
 `Contractor` **without editing any existing class** — open for extension, closed for
 modification.
 
-### Rules in the model vs. rules in a service (Deck 07, `testing.credentials`)
+### Rules in the model vs. rules in a service (Deck 08, `testing.credentials`)
 
 The same feature — changing a password — written twice. `UserAccountServiceSmell` is
 the **anemic** version: the rules sit in a service over a repository, so

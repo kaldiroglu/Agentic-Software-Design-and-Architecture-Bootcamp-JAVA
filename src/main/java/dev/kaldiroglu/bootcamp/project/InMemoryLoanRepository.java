@@ -1,5 +1,5 @@
 package dev.kaldiroglu.bootcamp.project;
-// ◀ Slides: Deck 09 SW Design Project with AI — "A Library Loan Service"
+// ◀ Slides: Deck 10 SW Design Project with AI — "A Library Loan Service"
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,5 @@
 package dev.kaldiroglu.bootcamp.testing.credentials;
-// ◀ Slides: Deck 07 Developer Testing — "Unit Test With Mocks" (the anemic version)
+// ◀ Slides: Deck 08 Developer Testing — "Unit Test With Mocks" (the anemic version)
 
 import dev.kaldiroglu.bootcamp.fundamentals.password.HashedPassword;
 import dev.kaldiroglu.bootcamp.fundamentals.password.Password;
