@@ -3,3 +3,8 @@ target/
 .idea/
 *.iml
 .DS_Store
+
+# Slides/ holds exported PDFs only. The decks themselves are build artifacts,
+# generated from the topic_*.py scripts in the course project.
+*.pptx
+~$*
