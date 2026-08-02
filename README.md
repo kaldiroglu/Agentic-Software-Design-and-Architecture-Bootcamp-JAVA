@@ -91,8 +91,21 @@ hand-written, which makes the difference in cost impossible to hide.
 
 Examples are deliberately tiny and self-contained: one concept per package, few
 dependencies, so each can be read and tested in isolation. The `hexagonal` package
-intentionally contrasts with `layered` — the domain owns its port and depends on no
-infrastructure, showing dependency inversion at architectural scale.
+intentionally contrasts with `layered` — the domain owns both of its ports and depends
+on no infrastructure, showing dependency inversion at architectural scale.
+
+The two packages hold the same three classes, so the difference is visible in the
+imports alone:
+
+| | `layered` | `hexagonal` |
+|---|---|---|
+| `OrderController` | `presentation/`, imports `OrderService` | `adapter/in/`, imports `OrderUseCase` |
+| `OrderService` | `business/`, imports `persistence` | `domain/`, implements the input port |
+| `OrderRepository` | `persistence/`, beside its implementation | `domain/`, owned by the core |
+| `InMemoryOrderRepository` | `persistence/` | `adapter/out/` |
+
+In `layered` every arrow points down at the layer below. In `hexagonal` both adapter
+packages point inward at `domain`, and `domain` imports neither of them.
 
 ## Run it with
 

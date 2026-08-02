@@ -33,7 +33,7 @@ lecture 07 and will appear in the Phase-2 (architecture) example code.
 | `testing.credentials.ChangePasswordTest` | the same change-password rule in both designs — the anemic version needs a repository double, the rich one needs none |
 | `project.LoanServiceTest` | borrow/return rules: 5-loan limit, copy availability, unknown book |
 | `layered.LayeredTest` | a request flows down the layers and back |
-| `hexagonal.HexagonalTest` | an adapter plugs into the domain's port from outside |
+| `hexagonal.HexagonalTest` | adapters plug into the domain's ports from both sides — a request enters through the driving adapter, and the driving adapter is also exercised against a hand-written stand-in for the input port, proving it never names `OrderService` |
 
 ## Run it with
 
@@ -43,4 +43,4 @@ mvn test                       # run every suite
 mvn test -Dtest=LoanServiceTest    # run one suite
 ```
 
-A green run reports: `Tests run: 62, Failures: 0, Errors: 0, Skipped: 0`.
+A green run reports: `Tests run: 65, Failures: 0, Errors: 0, Skipped: 0`.
