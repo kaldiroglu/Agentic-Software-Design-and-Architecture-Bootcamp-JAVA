@@ -1,8 +1,11 @@
 package dev.kaldiroglu.bootcamp.hexagonal.domain;
 // ◀ Slides: Deck 13 Hexagonal / Onion / Clean — "The Domain Owns the Interface"
 
+import dev.kaldiroglu.bootcamp.hexagonal.domain.port.in.OrderUseCase;
+import dev.kaldiroglu.bootcamp.hexagonal.domain.port.out.OrderRepository;
+
 /**
- * Domain logic at the center, sitting between two ports it owns. It IMPLEMENTS the
+ * Domain logic at the center, sitting between the two ports it owns. It IMPLEMENTS the
  * driving port {@link OrderUseCase} — that is how the outside reaches in — and it
  * DEPENDS ON the driven port {@link OrderRepository} — that is how it reaches out.
  * Unlike the layered version, the domain has NO dependency on any persistence or

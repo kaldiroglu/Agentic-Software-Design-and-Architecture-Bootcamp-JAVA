@@ -100,9 +100,14 @@ imports alone:
 | | `layered` | `hexagonal` |
 |---|---|---|
 | `OrderController` | `presentation/`, imports `OrderService` | `adapter/in/`, imports `OrderUseCase` |
-| `OrderService` | `business/`, imports `persistence` | `domain/`, implements the input port |
-| `OrderRepository` | `persistence/`, beside its implementation | `domain/`, owned by the core |
+| `OrderService` | `business/`, imports `persistence` | `domain/`, between its two ports |
+| `OrderUseCase` | — | `domain/port/in/`, the driving port |
+| `OrderRepository` | `persistence/`, beside its implementation | `domain/port/out/`, the driven port |
 | `InMemoryOrderRepository` | `persistence/` | `adapter/out/` |
+
+`in` and `out` say which side starts the conversation, and the split runs through
+both halves: `port/in` is called by `adapter/in`, `port/out` is implemented by
+`adapter/out`.
 
 In `layered` every arrow points down at the layer below. In `hexagonal` both adapter
 packages point inward at `domain`, and `domain` imports neither of them.

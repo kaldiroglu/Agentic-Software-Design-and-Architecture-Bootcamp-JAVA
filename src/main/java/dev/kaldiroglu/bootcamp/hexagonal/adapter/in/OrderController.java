@@ -1,7 +1,7 @@
 package dev.kaldiroglu.bootcamp.hexagonal.adapter.in;
 // ◀ Slides: Deck 13 Hexagonal / Onion / Clean — "Ports and Adapters"
 
-import dev.kaldiroglu.bootcamp.hexagonal.domain.OrderUseCase;
+import dev.kaldiroglu.bootcamp.hexagonal.domain.port.in.OrderUseCase;
 
 /**
  * A DRIVING ADAPTER at the edge — "in" because it drives the domain. It speaks HTTP

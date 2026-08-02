@@ -1,7 +1,7 @@
 package dev.kaldiroglu.bootcamp.hexagonal.adapter.out;
 // ◀ Slides: Deck 13 Hexagonal / Onion / Clean — "The Domain Owns the Interface"
 
-import dev.kaldiroglu.bootcamp.hexagonal.domain.OrderRepository;
+import dev.kaldiroglu.bootcamp.hexagonal.domain.port.out.OrderRepository;
 
 import java.util.ArrayList;
 import java.util.List;
