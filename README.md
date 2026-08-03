@@ -35,6 +35,7 @@ behaviour, not bullet points. The trainer can live-demo each smell and its fix.
 | `project` | 10 Design Project | Library Loan service |
 | `layered` | 12 Layered | controller → service → repository |
 | `hexagonal` | 13 Hexagonal | ports & adapters (dependencies inverted) |
+| `appservice` | 13 Hexagonal | an application service owns the transaction; the domain stays pure |
 
 *(Topics 08 Agentic and 10 Architecture Fundamentals are conceptual — no code.)*
 
@@ -125,14 +126,34 @@ you will meet most often in the wild. It goes two steps further than we do:
 | Adapters | `adapter/in`, `adapter/out` | `adapter/in/web`, `adapter/out/persistence` |
 
 Both differences are deliberate omissions, not oversights. Splitting `application`
-from `domain` earns its keep once entities exist that outlive any single use case —
-this example has none, so the extra ring would be structure with no lesson attached.
+from `domain` earns its keep once there is something for the extra ring to hold —
+`hexagonal` has nothing, so the ring would be structure with no lesson attached.
 Naming the technology in the adapter package pays off once there are several adapters
 per side; here there is one each. The **Library Loan Service** under `code/` is where
 the model is real, and the Ayvalık Bank HA repos show the fuller tree.
 
 What is *not* different is the part that matters: `in` and `out` on both the ports and
 the adapters, and every arrow pointing inward.
+
+### `appservice` — where the extra ring does earn it
+
+`appservice` is the same order domain with the ring added, and a reason for it: **an
+application service that owns the transaction.**
+
+| | `hexagonal` | `appservice` |
+|---|---|---|
+| The rule | `OrderService`, which also calls a repository | `Order.of(...)` — a record, no ports at all |
+| The use case | same class as the rule | `application/PlaceOrderService` |
+| Ports | `domain/port/in`, `domain/port/out` | `application/port/in`, `application/port/out` |
+| Transaction | nowhere | `TransactionManager`, a *driven* port |
+
+A transaction is a **mechanism, not a rule**. Ask a domain expert what a rollback is
+and you get a blank look — which is a decent test for whether a concept belongs in the
+model. So it is declared in `application`, and `domain/Order` never hears of it.
+
+`AppServiceTest` makes that checkable rather than asserted: a valid order records
+`begin → commit`, a blank one records `begin → rollback`, and `Order.of` is exercised
+on its own with no repository, no transaction and no service anywhere in the test.
 
 ## Run it with
 
