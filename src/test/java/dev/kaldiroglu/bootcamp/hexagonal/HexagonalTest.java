@@ -1,9 +1,9 @@
 package dev.kaldiroglu.bootcamp.hexagonal;
 
-import dev.kaldiroglu.bootcamp.hexagonal.adapter.in.web.OrderController;
-import dev.kaldiroglu.bootcamp.hexagonal.adapter.out.persistence.InMemoryOrderRepository;
-import dev.kaldiroglu.bootcamp.hexagonal.application.domain.service.OrderService;
-import dev.kaldiroglu.bootcamp.hexagonal.application.port.in.OrderUseCase;
+import dev.kaldiroglu.bootcamp.hexagonal.adapter.in.OrderController;
+import dev.kaldiroglu.bootcamp.hexagonal.adapter.out.InMemoryOrderRepository;
+import dev.kaldiroglu.bootcamp.hexagonal.domain.OrderService;
+import dev.kaldiroglu.bootcamp.hexagonal.domain.port.in.OrderUseCase;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

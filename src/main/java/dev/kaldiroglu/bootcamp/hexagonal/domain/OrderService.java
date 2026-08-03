@@ -1,19 +1,15 @@
-package dev.kaldiroglu.bootcamp.hexagonal.application.domain.service;
+package dev.kaldiroglu.bootcamp.hexagonal.domain;
 // ◀ Slides: Deck 13 Hexagonal / Onion / Clean — "The Domain Owns the Interface"
 
-import dev.kaldiroglu.bootcamp.hexagonal.application.port.in.OrderUseCase;
-import dev.kaldiroglu.bootcamp.hexagonal.application.port.out.OrderRepository;
+import dev.kaldiroglu.bootcamp.hexagonal.domain.port.in.OrderUseCase;
+import dev.kaldiroglu.bootcamp.hexagonal.domain.port.out.OrderRepository;
 
 /**
- * The center, sitting between the two ports the application owns. It IMPLEMENTS the
+ * Domain logic at the center, sitting between the two ports it owns. It IMPLEMENTS the
  * driving port {@link OrderUseCase} — that is how the outside reaches in — and it
  * DEPENDS ON the driven port {@link OrderRepository} — that is how it reaches out.
- * Both imports point at {@code application.port}; neither points at an adapter, and
- * that is the rule this whole package tree exists to make visible.
- *
- * <p>Its sibling package {@code application.domain.model} would hold the entities.
- * This example has none — an order is still a String — so the package is absent
- * rather than empty. Compare the Library Loan Service, where the model is real.
+ * Unlike the layered version, the domain has NO dependency on any persistence or
+ * presentation package. Infrastructure depends on the domain, not the other way round.
  */
 public final class OrderService implements OrderUseCase {
 

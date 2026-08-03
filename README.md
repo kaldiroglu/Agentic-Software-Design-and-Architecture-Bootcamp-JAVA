@@ -99,25 +99,40 @@ imports alone:
 
 | | `layered` | `hexagonal` |
 |---|---|---|
-| `OrderController` | `presentation/`, imports `OrderService` | `adapter/in/web/`, imports `OrderUseCase` |
-| `OrderService` | `business/`, imports `persistence` | `application/domain/service/` |
-| `OrderUseCase` | — | `application/port/in/`, the driving port |
-| `OrderRepository` | `persistence/`, beside its implementation | `application/port/out/`, the driven port |
-| `InMemoryOrderRepository` | `persistence/` | `adapter/out/persistence/` |
+| `OrderController` | `presentation/`, imports `OrderService` | `adapter/in/`, imports `OrderUseCase` |
+| `OrderService` | `business/`, imports `persistence` | `domain/`, between its two ports |
+| `OrderUseCase` | — | `domain/port/in/`, the driving port |
+| `OrderRepository` | `persistence/`, beside its implementation | `domain/port/out/`, the driven port |
+| `InMemoryOrderRepository` | `persistence/` | `adapter/out/` |
 
 `in` and `out` say which side starts the conversation, and the split runs through
 both halves: `port/in` is called by `adapter/in`, `port/out` is implemented by
 `adapter/out`.
 
-The layout follows [BuckPal](https://github.com/thombergs/buckpal), Tom Hombergs'
-reference implementation for *Get Your Hands Dirty on Clean Architecture* — ports and
-the service under `application/`, edges under `adapter/` grouped by technology. His
-`application/domain/model/` holds the entities; this example has none, since an order
-is still a `String`, so that package is absent rather than empty. The Library Loan
-Service under `code/` is where the model is real.
-
 In `layered` every arrow points down at the layer below. In `hexagonal` both adapter
 packages point inward at `domain`, and `domain` imports neither of them.
+
+### How this differs from BuckPal
+
+[BuckPal](https://github.com/thombergs/buckpal) is Tom Hombergs' reference
+implementation for *Get Your Hands Dirty on Clean Architecture*, and it is the tree
+you will meet most often in the wild. It goes two steps further than we do:
+
+| | here | BuckPal |
+|---|---|---|
+| Ports and the service | `domain/port/in`, `domain/port/out`, `domain/` | `application/port/in`, `application/port/out`, `application/domain/service/` |
+| Entities | none — an order is a `String` | `application/domain/model/` |
+| Adapters | `adapter/in`, `adapter/out` | `adapter/in/web`, `adapter/out/persistence` |
+
+Both differences are deliberate omissions, not oversights. Splitting `application`
+from `domain` earns its keep once entities exist that outlive any single use case —
+this example has none, so the extra ring would be structure with no lesson attached.
+Naming the technology in the adapter package pays off once there are several adapters
+per side; here there is one each. The **Library Loan Service** under `code/` is where
+the model is real, and the Ayvalık Bank HA repos show the fuller tree.
+
+What is *not* different is the part that matters: `in` and `out` on both the ports and
+the adapters, and every arrow pointing inward.
 
 ## Run it with
 
