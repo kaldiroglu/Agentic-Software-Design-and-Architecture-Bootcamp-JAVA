@@ -4,6 +4,15 @@
 
 *For further enquiry please contact Akin Kaldiroglu at akin@kaldiroglu.dev*
 
+## Green run
+
+**70 tests, all passing** — verified `mvn test` on 2026-08-04.
+
+The three companion repos run **70 · 63 · 65** tests (Java · C# · Python). That
+total is printed on the *companion code* slide of every chapter that has one, so it
+is never only a repo fact: change an example, re-run all three, and update this line,
+the README, and `references_data.py` together.
+
 ## Type of tests
 
 All tests here are **unit tests** (JUnit 5), by design: the examples teach
