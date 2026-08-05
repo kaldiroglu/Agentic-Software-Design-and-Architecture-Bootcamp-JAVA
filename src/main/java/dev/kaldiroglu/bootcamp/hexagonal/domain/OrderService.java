@@ -1,15 +1,15 @@
 package dev.kaldiroglu.bootcamp.hexagonal.domain;
-// ◀ Slides: Deck 13 Hexagonal / Onion / Clean — "The Domain Owns the Interface"
+// ◀ Slides: Deck 13 Hexagonal / Onion / Clean — "Ports and Adapters"
 
 import dev.kaldiroglu.bootcamp.hexagonal.domain.port.in.OrderUseCase;
 import dev.kaldiroglu.bootcamp.hexagonal.domain.port.out.OrderRepository;
 
 /**
- * Domain logic at the center, sitting between the two ports it owns. It IMPLEMENTS the
- * driving port {@link OrderUseCase} — that is how the outside reaches in — and it
- * DEPENDS ON the driven port {@link OrderRepository} — that is how it reaches out.
- * Unlike the layered version, the domain has NO dependency on any persistence or
- * presentation package. Infrastructure depends on the domain, not the other way round.
+ * The domain. It implements the driving port and calls the driven one, and it names
+ * no technology at all — the only imports are its own ports.
+ *
+ * <p>There is no validation here: {@link Order} cannot exist in an invalid state, so
+ * by the time one arrives the rule has already been enforced.
  */
 public final class OrderService implements OrderUseCase {
 
@@ -20,10 +20,7 @@ public final class OrderService implements OrderUseCase {
     }
 
     @Override
-    public void place(String order) {
-        if (order == null || order.isBlank()) {
-            throw new IllegalArgumentException("order must not be blank");
-        }
+    public void place(Order order) {
         repository.save(order);
     }
 

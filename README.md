@@ -163,8 +163,8 @@ mvn test          # compile everything and run all tests
 mvn -q compile    # compile only
 ```
 
-A green run is **70 tests**. Across the three companion repos the suites are
-**70 · 63 · 65** (Java · C# · Python) — the same total printed on the *companion
+A green run is **72 tests**. Across the three companion repos the suites are
+**72 · 65 · 67** (Java · C# · Python) — the same total printed on the *companion
 code* slide of every chapter. See `Test.md`.
 
 Run a single topic's tests:

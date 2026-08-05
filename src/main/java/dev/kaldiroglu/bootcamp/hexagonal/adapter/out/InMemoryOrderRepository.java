@@ -1,6 +1,7 @@
 package dev.kaldiroglu.bootcamp.hexagonal.adapter.out;
 // ◀ Slides: Deck 13 Hexagonal / Onion / Clean — "The Domain Owns the Interface"
 
+import dev.kaldiroglu.bootcamp.hexagonal.domain.Order;
 import dev.kaldiroglu.bootcamp.hexagonal.domain.port.out.OrderRepository;
 
 import java.util.ArrayList;
@@ -13,10 +14,10 @@ import java.util.List;
  */
 public final class InMemoryOrderRepository implements OrderRepository {
 
-    private final List<String> orders = new ArrayList<>();
+    private final List<Order> orders = new ArrayList<>();
 
     @Override
-    public void save(String order) {
+    public void save(Order order) {
         orders.add(order);
     }
 

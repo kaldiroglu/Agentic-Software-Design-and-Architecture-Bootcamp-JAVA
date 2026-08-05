@@ -2,6 +2,7 @@ package dev.kaldiroglu.bootcamp.hexagonal;
 
 import dev.kaldiroglu.bootcamp.hexagonal.adapter.in.OrderController;
 import dev.kaldiroglu.bootcamp.hexagonal.adapter.out.InMemoryOrderRepository;
+import dev.kaldiroglu.bootcamp.hexagonal.domain.Order;
 import dev.kaldiroglu.bootcamp.hexagonal.domain.OrderService;
 import dev.kaldiroglu.bootcamp.hexagonal.domain.port.in.OrderUseCase;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Adapters plug into the domain's ports from outside — a driving one on the way in,
@@ -26,8 +28,8 @@ class HexagonalTest {
     @Test
     void drivenAdapterPlugsIntoTheDomainPort() {
         var service = new OrderService(new InMemoryOrderRepository());
-        service.place("2x tea");
-        service.place("1x cake");
+        service.place(Order.of("2x tea"));
+        service.place(Order.of("1x cake"));
         assertEquals(2, service.placedCount());
     }
 
@@ -50,10 +52,10 @@ class HexagonalTest {
      */
     @Test
     void theDrivingAdapterNeedsThePortOnly() {
-        List<String> received = new ArrayList<>();
+        List<Order> received = new ArrayList<>();
         OrderUseCase standIn = new OrderUseCase() {
             @Override
-            public void place(String order) {
+            public void place(Order order) {
                 received.add(order);
             }
 
@@ -65,6 +67,18 @@ class HexagonalTest {
 
         var controller = new OrderController(standIn);
         assertEquals("201 Created", controller.place("1x tea"));
-        assertEquals(List.of("1x tea"), received);
+        assertEquals(List.of(Order.of("1x tea")), received);
+    }
+
+    /**
+     * No repository, no service, no adapter — the blank-order rule is enforced by the
+     * value object alone. That is what "the domain owns it" means at the type level:
+     * an invalid Order cannot be constructed, so nothing downstream may assume one.
+     */
+    @Test
+    void anInvalidOrderCannotBeConstructed() {
+        assertThrows(IllegalArgumentException.class, () -> Order.of("  "));
+        assertThrows(IllegalArgumentException.class, () -> Order.of(null));
+        assertEquals("2x tea", Order.of("  2x tea  ").text());
     }
 }

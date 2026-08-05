@@ -6,9 +6,9 @@
 
 ## Green run
 
-**70 tests, all passing** — verified `mvn test` on 2026-08-04.
+**72 tests, all passing** — verified `mvn test` on 2026-08-05.
 
-The three companion repos run **70 · 63 · 65** tests (Java · C# · Python). That
+The three companion repos run **72 · 65 · 67** tests (Java · C# · Python). That
 total is printed on the *companion code* slide of every chapter that has one, so it
 is never only a repo fact: change an example, re-run all three, and update this line,
 the README, and `references_data.py` together.
